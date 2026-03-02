@@ -1,0 +1,21 @@
+[project]
+name = "lgtm"
+version = "0.1.0"
+description = "A CYOA game."
+requires-python = ">=3.13"
+dependencies = [
+    "pyfiglet>=1.0.4",
+    "textual>=8.0.1",
+]
+
+[project.scripts]
+lgtm = "lgtm.title:main"
+
+[build-system]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "textual-dev>=1.8.0",
+]
