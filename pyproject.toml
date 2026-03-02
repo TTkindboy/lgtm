@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [project.scripts]
-lgtm = "lgtm.title:main"
+lgtm = "lgtm.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.10.4,<0.11.0"]

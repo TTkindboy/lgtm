@@ -46,6 +46,3 @@ class TitleScreen(App):
     def on_key(self, event) -> None:
         if event.key == "enter":
             self.exit()
-
-def main():
-    TitleScreen().run()
