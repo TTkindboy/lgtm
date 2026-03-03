@@ -1,10 +1,10 @@
-from textual.app import App, ComposeResult
+from textual.app import Screen, ComposeResult
 from textual.containers import Container
 from textual.widgets import Static
 from pyfiglet import figlet_format
 
 
-class TitleScreen(App):
+class TitleScreen(Screen):
     CSS_PATH = "title.tcss"
     BINDINGS = [("enter", "start", "Start game")]
     
@@ -17,4 +17,4 @@ class TitleScreen(App):
         )
 
     def action_start(self) -> None:
-        self.exit()
+        self.app.exit()
