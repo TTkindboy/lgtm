@@ -1,6 +1,7 @@
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import OptionList, Static
+from ..widgets.typing_text import TypingText # maybe find a way to do relative imports
 
 class Choice(OptionList, inherit_css=False):
     COMPONENT_CLASSES = OptionList.COMPONENT_CLASSES.copy()
@@ -35,9 +36,11 @@ class ChoiceScreen(Screen):
     """
 
     def compose(self) -> ComposeResult:
-        yield Choice("Hello", "World", "This is a choice screen", "Quit")
+        yield TypingText("This is the choice screen. You can choose from the options below.", 30)
         self.result = Static("", id="result")
         yield self.result
+        yield Choice("Hello", "World", "This is a choice screen", "Quit")
+        
 
     def on_option_list_option_selected(self, event: OptionList.OptionSelected):
         if event.option_index == 3: # SO FRAGILE 💀
