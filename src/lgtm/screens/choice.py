@@ -5,17 +5,20 @@ class Choice(OptionList, inherit_css=False):
     COMPONENT_CLASSES = OptionList.COMPONENT_CLASSES.copy()
     DEFAULT_CSS = """
     Choice {
+        height: auto;
         & > .option-list--option-highlighted {
             color: $block-cursor-background;
             text-style: bold;
         }
-        height: auto;
+        & > .option-list--option-hover {
+            background: $block-hover-background;
+        }
     }
     """
 
     # TODO: Allow passing in Option instances
     def __init__(self, *content: str, **kwargs):
-        kwargs.setdefault("compact", True)
+        kwargs.setdefault("compact", True) # no-op i think
         items = [f"{i}. {text}" for i, text in enumerate(content, start=1)]
         super().__init__(*items, **kwargs)
 
@@ -38,4 +41,4 @@ class ChoiceScreen(Screen):
     def on_option_list_option_selected(self, event: OptionList.OptionSelected):
         if event.option_index == 3: # SO FRAGILE 💀
             self.app.exit()
-        self.result.update(str(event))
+        self.result.update(event.option.prompt)
