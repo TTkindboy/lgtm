@@ -17,4 +17,4 @@ class TitleScreen(Screen):
         )
 
     def action_start(self) -> None:
-        self.app.exit()
+        self.app.switch_screen("choice")
