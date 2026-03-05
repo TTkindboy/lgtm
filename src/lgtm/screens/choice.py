@@ -1,5 +1,6 @@
-from textual.widgets import OptionList, Static
+from textual.app import ComposeResult
 from textual.screen import Screen
+from textual.widgets import OptionList, Static
 
 class Choice(OptionList, inherit_css=False):
     COMPONENT_CLASSES = OptionList.COMPONENT_CLASSES.copy()
@@ -33,7 +34,7 @@ class ChoiceScreen(Screen):
     }
     """
 
-    def compose(self):
+    def compose(self) -> ComposeResult:
         yield Choice("Hello", "World", "This is a choice screen", "Quit")
         self.result = Static("", id="result")
         yield self.result
