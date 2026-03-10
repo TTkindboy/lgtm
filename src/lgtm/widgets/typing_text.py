@@ -1,8 +1,9 @@
 from textual.reactive import reactive
 from textual.widgets import Static
 
-
-class TypingText(Static): # TODO: FIX EXTERIOR UPDATE BEHAVIOR 
+# TODO: FIX EXTERIOR UPDATE BEHAVIOR
+# Maybe switch to extend from Widget in the future
+class TypingText(Static):
     index = reactive(0)
     
     def __init__(self, content: str, speed: int = 30, **kwargs):
