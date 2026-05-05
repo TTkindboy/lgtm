@@ -1,3 +1,5 @@
+import subprocess
+from pathlib import Path
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import OptionList, Static
@@ -39,10 +41,17 @@ class ChoiceScreen(Screen):
         yield TypingText("This is the choice screen. You can choose from the options below.", 30)
         self.result = Static("", id="result")
         yield self.result
-        yield Choice("Hello", "World", "This is a choice screen", "Quit")
-        
+        yield Choice("Hello", "World", "This is a choice screen", "Play Snake", "Quit")
 
     def on_option_list_option_selected(self, event: OptionList.OptionSelected):
-        if event.option_index == 3: # SO FRAGILE 💀
+        if event.option_index == 3: # ts is not reusable in the slightest 🫩✌️
+            self.action_play_snake()
+        elif event.option_index == 4: # SO FRAGILE 💀
             self.app.exit()
-        self.result.update(event.option.prompt)
+        else:
+            self.result.update(event.option.prompt)
+
+    def action_play_snake(self) -> None: # i dont even know why i am putting snake call logic here but atp idrk
+        snake_bin = Path(__file__).parent.parent / "bin" / "snake"
+        with self.app.suspend():
+            subprocess.run([str(snake_bin)])

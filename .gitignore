@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Rust bin generated files
+target/
+src/lgtm/bin/

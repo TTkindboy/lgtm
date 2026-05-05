@@ -6,10 +6,13 @@ on:
 jobs:
   build:
     name: python
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v6
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
 
       - name: "Set up Python"
         uses: actions/setup-python@v6
