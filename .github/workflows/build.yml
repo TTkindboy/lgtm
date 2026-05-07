@@ -28,7 +28,8 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Set version
-        run: echo "HATCH_VCS_PRETEND_VERSION=0.1.0.$(date +%s)" >> $GITHUB_ENV
+        run: |
+          sed -i '' 's/^version = .*/version = "0.0.'"$(date +%s)"'"/' pyproject.toml
 
       - name: Install the project dependencies
         run: uv sync --locked --all-extras --dev
