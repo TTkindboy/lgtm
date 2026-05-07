@@ -36,3 +36,13 @@ jobs:
         with:
           name: lgtm
           path: dist/
+
+      - name: Publish to GitHub Releases
+        uses: softprops/action-gh-release@v3
+        with:
+          files: dist/*.whl
+          tag_name: latest
+          prerelease: true
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
