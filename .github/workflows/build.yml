@@ -33,7 +33,7 @@ jobs:
       #   run: uv run pytest
 
       - name: Build the project
-        run: uv build
+        run: uv build --wheel # only build wheel for now bc we want to include binary
         env: 
           MACOSX_DEPLOYMENT_TARGET: "14.0"
 
