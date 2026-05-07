@@ -4,11 +4,24 @@ version = "0.1.0"
 description = "A CYOA game."
 requires-python = ">=3.13"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "BSD-3-Clause"
+keywords = ["game", "cyoa", "terminal", "tui", "textual"]
 dependencies = [
     "pyfiglet>=1.0.4",
     "textual>=8.0.1",
 ]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Environment :: Console",
+]
+
+[project.urls]
+Source = "https://github.com/TTkindboy/lgtm"
+Issues = "https://github.com/TTkindboy/lgtm/issues"
+
 
 [project.scripts]
 lgtm = "lgtm.app:main"
