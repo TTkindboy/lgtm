@@ -10,6 +10,7 @@ jobs:
   build:
     name: build
     runs-on: macos-latest
+    environment: production
 
     steps:
       - uses: actions/checkout@v6
@@ -42,12 +43,7 @@ jobs:
           name: lgtm
           path: dist/
 
-      - name: Publish to GitHub Releases
-        uses: softprops/action-gh-release@v3
-        with:
-          files: dist/*.whl
-          tag_name: latest
-          prerelease: true
-          make_latest: true
+      - name: Publish to TestPyPI
+        run: uv publish --index testpypi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UV_PUBLISH_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
