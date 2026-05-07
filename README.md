@@ -11,9 +11,9 @@ Run the game directly from the GitHub source during development. (ARM macOS only
 
 ### With uv: (recommended) 
 ```bash
-uvx --from https://github.com/TTkindboy/lgtm/releases/download/latest/lgtm-0.1.0-cp313-cp313-macosx_15_0_arm64.whl lgtm
+uvx --index https://test.pypi.org/simple/ --index-strategy unsafe-best-match lgtm
 ```
 ### With pipx:
 ```bash
-pipx run --spec https://github.com/TTkindboy/lgtm/releases/download/latest/lgtm-0.1.0-cp313-cp313-macosx_15_0_arm64.whl lgtm
+pipx run --index-url https://test.pypi.org/simple/ lgtm
 ```
