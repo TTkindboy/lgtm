@@ -10,7 +10,7 @@ jobs:
   build:
     name: build
     runs-on: macos-latest
-    environment: production
+    environment: pypi-publish
 
     steps:
       - uses: actions/checkout@v6
