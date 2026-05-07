@@ -6,6 +6,8 @@ from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 class CustomBuildHook(BuildHookInterface):
     def initialize(self, version, build_data):
+        build_data["pure_python"] = False
+        build_data["infer_tag"] = True
         binary_name = "snake"
         result = subprocess.run(
             ["cargo", "build", "--release", "--manifest-path", f"rust/{binary_name}/Cargo.toml"],
