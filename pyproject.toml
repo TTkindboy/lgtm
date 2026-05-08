@@ -1,6 +1,6 @@
 [project]
 name = "lgtm"
-version = "0.1.0"
+dynamic = ["version"]
 description = "A CYOA game."
 requires-python = ">=3.13"
 readme = "README.md"
@@ -27,8 +27,11 @@ Issues = "https://github.com/TTkindboy/lgtm/issues"
 lgtm = "lgtm.app:main"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/lgtm"]
@@ -36,10 +39,18 @@ artifacts = ["src/lgtm/bin/*"]
 
 [tool.hatch.build.hooks.custom]
 
+[tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { file = "hatch_build.py" },
+    { file = "rust/snake/Cargo.toml" },
+    { file = "rust/snake/src/**/*.rs" },
+]
+
 [dependency-groups]
 dev = [
     "textual-dev>=1.8.0",
-    "hatchling",
+    "hatchling", # removes ty warnings
 ]
 
 [[tool.uv.index]]

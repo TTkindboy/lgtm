@@ -11,7 +11,7 @@ class CustomBuildHook(BuildHookInterface):
         binary_name = "snake"
         result = subprocess.run(
             ["cargo", "build", "--release", "--manifest-path", f"rust/{binary_name}/Cargo.toml"],
-            check=False,
+            check=True,
         )
         if result.returncode != 0:
             sys.exit("cargo build failed")
