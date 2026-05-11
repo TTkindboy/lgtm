@@ -11,9 +11,9 @@ Run the game directly from the GitHub source during development. (ARM macOS only
 
 ### With uv: (recommended) 
 ```bash
-uvx --index https://test.pypi.org/simple/ --index-strategy unsafe-best-match lgtm
+uvx --index https://test.pypi.org/simple/ --index-strategy unsafe-best-match --prerelease allow lgtm
 ```
 ### With pipx:
 ```bash
-pipx run --index-url https://test.pypi.org/simple/ lgtm
+pipx run --index-url https://test.pypi.org/simple/ --pip-args="--pre" lgtm
 ```
