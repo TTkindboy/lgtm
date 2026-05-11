@@ -24,7 +24,7 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Set up Python
+      - name: Set up Python # might not be needed anymore
         uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
@@ -32,39 +32,19 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
 
-      - name: Cache cargo (Linux)
-        if: runner.os == 'Linux'
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-      - name: Build wheels (Linux, manylinux)
-        if: runner.os == 'Linux'
-        uses: pypa/cibuildwheel@v2
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v3
         env:
           CIBW_BUILD: cp313-*
           CIBW_BEFORE_ALL_LINUX: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
           CIBW_ENVIRONMENT_LINUX: PATH="$HOME/.cargo/bin:$PATH"
-
-      - name: Install the project dependencies (macOS/Windows)
-        if: runner.os != 'Linux'
-        run: uv sync --locked --all-extras --dev
-
-      - name: Build wheels (macOS/Windows)
-        if: runner.os != 'Linux'
-        run: uv build --wheel
-        env:
           MACOSX_DEPLOYMENT_TARGET: "14.0"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
           name: lgtm-${{ matrix.os }}
-          path: dist/
+          path: wheelhouse/
 
       - name: Publish to TestPyPI
-        run: uv publish --index testpypi
+        run: uv publish --index testpypi wheelhouse/*
