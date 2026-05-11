@@ -1,5 +1,6 @@
 import importlib.resources
 import subprocess
+import sys
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import OptionList, Static
@@ -52,6 +53,7 @@ class ChoiceScreen(Screen):
             self.result.update(event.option.prompt)
 
     def action_play_snake(self) -> None: # i dont even know why i am putting snake call logic here but atp idrk
-        with importlib.resources.as_file(importlib.resources.files("lgtm") / "bin" / "snake") as snake_bin:
+        exe = "snake.exe" if sys.platform == "win32" else "snake"
+        with importlib.resources.as_file(importlib.resources.files("lgtm") / "bin" / exe) as snake_bin:
             with self.app.suspend():
                 subprocess.run([str(snake_bin)])
