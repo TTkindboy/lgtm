@@ -7,7 +7,7 @@ A CYOA game about code review purgatory
 
 ## Usage
 
-Run the game directly from the GitHub source during development. (ARM macOS only for now)
+Run the game directly from the GitHub source during development.
 
 ### With uv: (recommended) 
 ```bash
